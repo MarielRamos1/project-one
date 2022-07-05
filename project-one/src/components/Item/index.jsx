@@ -1,34 +1,22 @@
 import React from 'react'
 
-const products = [
-    {
-      id: 'producto1',
-      name: 'Nombre',
-      descripción: 'Descripcion',
-      stock: 1,
-    },
-    {
-      id: 'producto2',
-      name: 'Nombre2',
-      descripción: 'Descripcion2',
-      stock: 5,
-    },
-  ];
+const products =             [
+  {
+      id:1,
+      title: 'Producto1',
+      price:'100$',
+      description:'Vainilla',
+  }, {
+    id:2,
+    title:'Producto2',
+    price:'150$',
+    description:'Chocolate',
+}
+]
 
   setTimeout(() => {
     resolve(products);
-}, 3000);
-
-const getProduct = async () => {
-    try {
-        response = await promesaDeProductos;
-        console.log(response);
-    } catch (err) {
-        console.log('Error' + err);
-      }
-    };
-
-    getProduct();
+}, 2000);
 
 const Item = ({product}) => {
   return (
