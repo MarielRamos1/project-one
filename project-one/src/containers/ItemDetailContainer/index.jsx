@@ -1,29 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemDetail from '../../components/ItemDetail'
 
-const ItemDetailCointainer = () => {
+const ItemDetailContainer = () => {
 
-    const [productDetail, setProductDetail] = useState({1: Any})
-    const [error, setError] = useState ("")
+    const [productDetail, setProductDetail] = useState({})
 
     useEffect(()=> {
         const getProductos = async () => {
             try {
-                const response = await fetch('https://fakestoreapi.com/products/1')
+                const response = await fetch('https://fakestoreapi.com/products')
                 const data = await response.json();
                 setProductDetail(data)
             } catch (error) {
                 console.log(error)
-                setError(error.message)
             }
         }
-        
         getProductos();
+
     }, [])
 
-  return (
-    <ItemDetail product={product}/>
-  )
+    return (
+        <ItemDetail product={productDetail}/>
+    )
 }
 
-export default ItemDetailCointainer
+export default ItemDetailContainer

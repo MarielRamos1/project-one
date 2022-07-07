@@ -1,26 +1,20 @@
 import React from 'react'
+import { Button, Card } from 'react-bootstrap'
 
-const products =             [
-  {
-      id:1,
-      title: 'Producto1',
-      price:'100$',
-      description:'Vainilla',
-  }, {
-    id:2,
-    title:'Producto2',
-    price:'150$',
-    description:'Chocolate',
-}
-]
+const Item = ({prod}) => {
 
-  setTimeout(() => {
-    resolve(products);
-}, 2000);
-
-const Item = ({product}) => {
+  const {id, nombre, precio, imagen} = prod
   return (
-    <li>{product.title}</li>
+<Card style={{ width: '18rem', margin: 20 }}>
+  <Card.Img variant="top" src={imagen} />
+  <Card.Body>
+    <Card.Title>{nombre}</Card.Title>
+    <Card.Text>
+      precio:{precio}
+    </Card.Text>
+    <Button variant="primary">Ver Detalle</Button>
+  </Card.Body>
+</Card>
   )
 }
 

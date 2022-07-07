@@ -1,38 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import ItemList from '../../components/ItemList'
-import ItemCount from '../../components/ItemCount';
+import ItemCount from '../../components/ItemCount'
 
 const ItemListContainer = ({greeting}) => {
 
-  const [productos, setProductos] = useState(null)
+  const [data, setData] = useState([null])
 
-  useEffect(() => {
+  const productos = [
+    {id:1, nombre: 'producto1', precio: 100, Image},
+    {id:1, nombre: 'producto1', precio: 100, Image},
+  ]
 
-    const getProductos = async () => {
-      try {
-        const response = await fetch('/mocks/data.json');
-        const data = await response.json();
-        console.log(data);
-        setProductos(data);
-      } catch (error) {
-        console.log("Hubo un error:");
-        console.log(error);
-      }
+  const task = new Promise ((res, rej) => {
+    setTimeout(() => {
+    res(productos)
+  }, 2000)
+  })
+
+  const fetchData = async () => {
+    try {
+      let res = await task
+      setData(res)
+    } catch (error) {
+      console.log(error)
     }
+  }
 
-    getProductos()
+  useEffect (() => {
+  fetchData()
+  }, []);
 
-  }, [])
+  console.log(data)
 
   const handleAdd = (count) => {
     console.log(`Se agrego al carrito ${count} productos`)
   }
 
-return (
-    <><h1>{greeting}</h1><ItemCount handleAdd={handleAdd} initial={1} stock={10}/></>
-    {productos ?
-      <ItemList products={productos} />
-      :
-      null}
+  return (
+  <div style={{textalign: 'center', marginTop:200}}>
+    <><h1>{greeting}</h1><ItemCount handleAdd={handleAdd} initial={1} stock={10} /></>
+    <ItemList productos={data}/>
+    </div>
+  )
+ }
 
-export default ItemListContainer
+export default ItemListContainer;
